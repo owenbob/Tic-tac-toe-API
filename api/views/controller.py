@@ -14,10 +14,11 @@ Numpy Module to handle the game grid.
 from flask import Flask, request, jsonify
 from api.game.tictactoe import game
 
+
 import numpy as np
+
 import re
 
-# from api.game.tictactoe import game,validate
 
 app = Flask(__name__)
 
@@ -41,7 +42,7 @@ def tic_tac_toe():
     #Check is the board is valid for number of plays
     user_plays = board.count("x")
     api_plays = board.count("o")
-    if not(user_plays == api_plays or (user_plays-1) == api_plays):
+    if not(user_plays == api_plays or (abs(user_plays-api_plays) == 1)):
         return jsonify({
             "Message":"Invalid board, User or API has played multiple times"
         }),400
