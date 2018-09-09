@@ -49,6 +49,3 @@ class TicTacToeTest(TestCase):
     def test_check_normal_game_play(self):
         response = self.client.get("/?board=+xxo++o++")
         assert response.status_code == 200
-
-    
-

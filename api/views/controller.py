@@ -70,8 +70,10 @@ def tic_tac_toe():
         
     user_win = winning_check.count("xxx")
     api_win = winning_check.count("ooo")
-    draw_check = re.findall('[^\S\n\t]+',str(winning_check))
-    draw_game = all(x==draw_check[0] for x in draw_check)
+    
+
+    #Convert grid to list to check for a draw
+    convert_to_list = [j for i in grid for j in i]
 
     if  user_win == 1:
         return jsonify({
@@ -81,12 +83,12 @@ def tic_tac_toe():
         return jsonify({
             "Message": "Hard Luck, You lose"
         }),200
-    elif draw_game:
+    elif " " not in convert_to_list:
         return jsonify({
             "Message": "It is a Draw"
         }),200
     else:
-        result = game(grid)
+        result = game(convert_to_list,grid)
         return result,200
 
     
