@@ -70,8 +70,8 @@ def tic_tac_toe():
         
     user_win = winning_check.count("xxx")
     api_win = winning_check.count("ooo")
-    
 
+    
     #Convert grid to list to check for a draw
     convert_to_list = [j for i in grid for j in i]
 
@@ -89,7 +89,32 @@ def tic_tac_toe():
         }),200
     else:
         result = game(convert_to_list,grid)
-        return result,200
 
-    
-    
+        #split the result to check if api won
+        split_result = [x for x in result]
+
+        #Convert this list into a 3 by 3 numpy array
+        grid = np.array(split_result).reshape(3,3)
+        g= grid 
+
+        check_result = [g[0],
+                g[1],
+                g[2],
+                [g[0,0],g[1,0],g[2,0]],
+                [g[0,1],g[1,1],g[2,1]],
+                [g[0,2],g[1,2],g[2,2]],
+                [g[0,0],g[1,1],g[2,2]],
+                [g[0,2],g[1,1],g[0,2]]
+                ] 
+
+        winning_check = ["".join(x) for x in check_result]
+
+        result_win = winning_check.count("ooo")
+
+        if result_win == 1:
+            return jsonify({
+            "Message": "Hard Luck, You lose"
+            }),200
+
+        else:
+            return result,200
