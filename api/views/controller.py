@@ -48,12 +48,13 @@ def tic_tac_toe():
         }),400
 
     check_results = winning_criteria(board)
-    if type(check_results) == list:
+
+    if type(check_results) is list:
         result = game(check_results)
         api_win = winning_criteria(result)
-        if api_win:
-            return api_win
-        else:
+        if type(api_win) is list:
             return result
+        else:
+            return api_win
     else:
         return check_results
