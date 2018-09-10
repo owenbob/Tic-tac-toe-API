@@ -46,13 +46,13 @@ def tic_tac_toe():
     #check if api has already played
     if (api_plays > user_plays):
         return jsonify({
-            "Message":"Invalid board, API has  already played"
+            "Message":"Invalid board, API played multiple times"
         }),400
-        
+
     #check for multiple plays
     if not(user_plays == api_plays or (abs(user_plays-api_plays) == 1)):
         return jsonify({
-            "Message":"Invalid board, User or API has played multiple times"
+            "Message":"Invalid board, User has played multiple times"
         }),400
 
     check_results = winning_criteria(board)
