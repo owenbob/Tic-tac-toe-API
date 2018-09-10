@@ -30,16 +30,16 @@ class TicTacToeTest(TestCase):
         response = self.client.get("/?board=+xxob+o++")
         assert response.status_code == 400
 
+    def test_check_if_api_has_already_played(self):
+        response = self.client.get("/?board=+o++oxxo+")
+        assert response.status_code == 400
+
     def test_invalid_board_with_multiple_plays(self):
         response = self.client.get("/?board=o+xoox++o")
         assert response.status_code == 400
 
     def test_check_user_win(self):
         response = self.client.get("/?board=x+o+xo++x")
-        assert response.status_code == 200
-
-    def test_check_for_user_loss(self):
-        response = self.client.get("/?board=+o++oxxo+")
         assert response.status_code == 200
 
     def test_check_for_draw(self):

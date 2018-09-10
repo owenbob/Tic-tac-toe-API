@@ -38,7 +38,7 @@ def winning_criteria(board):
                 [g[0,1],g[1,1],g[2,1]],
                 [g[0,2],g[1,2],g[2,2]],
                 [g[0,0],g[1,1],g[2,2]],
-                [g[0,2],g[1,1],g[0,2]]
+                [g[0,2],g[1,1],g[2,0]]
                 ] 
 
     winning_check = ["".join(x) for x in criteria]
@@ -46,13 +46,14 @@ def winning_criteria(board):
     user_win = winning_check.count("xxx")
     api_win = winning_check.count("ooo")
 
-
     #Convert grid to list to check for a draw
     convert_to_list = [j for i in grid for j in i]
 
+    #return board
     if  user_win == 1:
         return jsonify({
-            "Message": "Congratulations, You win"
+            "Message": "Congratulations, You win",
+            "Board state": board
         }),200
     elif api_win == 1:
 
@@ -62,7 +63,8 @@ def winning_criteria(board):
         }),200
     elif " " not in convert_to_list:
         return jsonify({
-            "Message": "It is a Draw"
+            "Message": "It is a Draw",
+            "Board state": board
         }),200
     else:
         return convert_to_list

@@ -42,6 +42,14 @@ def tic_tac_toe():
     #Check is the board is valid for number of plays
     user_plays = board.count("x")
     api_plays = board.count("o")
+
+    #check if api has already played
+    if (api_plays > user_plays):
+        return jsonify({
+            "Message":"Invalid board, API has  already played"
+        }),400
+        
+    #check for multiple plays
     if not(user_plays == api_plays or (abs(user_plays-api_plays) == 1)):
         return jsonify({
             "Message":"Invalid board, User or API has played multiple times"
