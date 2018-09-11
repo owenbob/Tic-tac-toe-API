@@ -17,7 +17,6 @@ Try  https://tictac-toe-api.herokuapp.com/board=+xxo++o++
 - The server always plays as o.
 - Either player can go first.
 - If the board is a valid tic-tac-toe board and it is plausibly o's turn, your server should return a string representation of the same board with one ‘o’ added.
-##### To be done
 -  The tic-tac-toe api should play optimally (i.e. never lose when it is possible to force a tie, or tie when it is possible to win)
 
 
