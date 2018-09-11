@@ -112,7 +112,8 @@ def block(character_list, *check_list):
             return item[2]
         elif ((c[item[1]] == c[item[2]]) and c[item[0]] == " ") :
             return item[0]
-        elif ((c[item[1]] == c[item[2]])  and c[item[1]] == " "):
+        elif ((c[item[0]] == c[item[2]])  and c[item[1]] == " "):
+
             return item[1]
               
 def winning_criteria(board):
