@@ -19,31 +19,30 @@ def game(character_list):
     #ptp -> position_to_play
 
     pm = character_list.count(" ")
+    choices = [0, 2, 6, 8]
 
     if pm == 9:
-        choices = [0, 2, 4, 6]
+ 
         ptp = random.choice(choices)
         character_list[ptp] = "o"
 
         result = "".join(character_list)
         return result
 
-    if pm == 8:
-        choices = [0, 2, 4, 6]
-        
+    if pm == 8:        
         if character_list[0] != " ":
-            character_list[6] = "o"
+            character_list[8] = "o"
             result = "".join(character_list)
             return result
         elif character_list[2] != " ":
-            character_list[4] = "o"
-            result = "".join(character_list)
-            return result
-        elif character_list[4] != " ":
-            character_list[2] = "o"
+            character_list[6] = "o"
             result = "".join(character_list)
             return result
         elif character_list[6] != " ":
+            character_list[2] = "o"
+            result = "".join(character_list)
+            return result
+        elif character_list[8] != " ":
             character_list[0] = "o"
             result = "".join(character_list)
             return result
@@ -51,26 +50,25 @@ def game(character_list):
             ptp = random.choice(choices)
             character_list[ptp] = "o"
             result = "".join(character_list)
-            
             return result
+
     if pm == 7:
-        if character_list[0] != " ":
+        if character_list[0] == " ":
             character_list[0] = "o"
             result = "".join(character_list)
             return result
-
-        elif character_list[2] != " ":
-            character_list[0] = "o"
+        elif character_list[2] == " ":
+            character_list[2] = "o"
             result = "".join(character_list)
             return result
 
-        elif character_list[4] != " ":
-            character_list[4] = "o"
-            result = "".join(character_list)
-            return result
-
-        elif character_list[6] != " ":
+        elif character_list[6] == " ":
             character_list[6] = "o"
+            result = "".join(character_list)
+            return result
+
+        elif character_list[8] == " ":
+            character_list[8] = "o"
             result = "".join(character_list)
             return result
 
@@ -84,36 +82,34 @@ def game(character_list):
             result = "".join(character_list)
             return result
         else :
-            if character_list[0] != " ":
+            if character_list[0] == " ":
                 character_list[0] = "o"
                 result = "".join(character_list)
                 return result
 
-            elif character_list[2] != " ":
-                character_list[0] = "o"
+            elif character_list[2] == " ":
+                character_list[2] = "o"
                 result = "".join(character_list)
                 return result
 
-            elif character_list[4] != " ":
-                character_list[4] = "o"
-                result = "".join(character_list)
-                return result
-
-            elif character_list[6] != " ":
+            elif character_list[6] == " ":
                 character_list[6] = "o"
+                result = "".join(character_list)
+                return result
+
+            elif character_list[8] == " ":
+                character_list[8] = "o"
                 result = "".join(character_list)
                 return result
    
 def block(character_list, *check_list):
     c = character_list
-
     for item in check_list:
-        if ((c[item[0]] == c[item[1]]) and c[item[2]] == " "):
+        if ((c[item[0]] == c[item[1]]) and c[item[0]] != " " and c[item[1]] != " " and c[item[2]] == " "):
             return item[2]
-        elif ((c[item[1]] == c[item[2]]) and c[item[0]] == " ") :
+        elif ((c[item[1]] == c[item[2]]) and c[item[1]]!= " " and c[item[2]] != " " and c[item[0]] == " ") :
             return item[0]
-        elif ((c[item[0]] == c[item[2]])  and c[item[1]] == " "):
-
+        elif ((c[item[0]] == c[item[2]]) and c[item[0]]!= " " and c[item[2]] != " " and c[item[1]] == " "):
             return item[1]
               
 def winning_criteria(board):
