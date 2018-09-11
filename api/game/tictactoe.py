@@ -5,21 +5,6 @@ import numpy as np
 
 def game(character_list):
    
-    # #Convert to list and join to return required characters
-    # convert_to_list = [j for i in grid for j in i]
-
-    #Pick position to play randomly
-    #pm -> possible_moves
-    #ptp -> position_to_play
-
-    # pm = [i for i, item in enumerate(character_list) if item == " "]
-    # ptp = random.choice(pm)
-
-    # character_list[ptp] = "o"
-    
-    # result = "".join(character_list)
-    # return result
-
     """
     9 possible moves - play any of the corners with indices[0,2,6,8]
     8 possible moves - if a corner played play the opposite corner
@@ -29,7 +14,10 @@ def game(character_list):
     6 possible moves - check if any possible win and block, if none play available corner
     5  and below - repeat process
     """
-    import pdb; pdb.set_trace()
+
+    #pm -> possible_moves
+    #ptp -> position_to_play
+
     pm = character_list.count(" ")
 
     if pm == 9:
@@ -39,6 +27,7 @@ def game(character_list):
 
         result = "".join(character_list)
         return result
+
     if pm == 8:
         choices = [0, 2, 4, 6]
         
@@ -50,24 +39,21 @@ def game(character_list):
             character_list[4] = "o"
             result = "".join(character_list)
             return result
-
         elif character_list[4] != " ":
             character_list[2] = "o"
             result = "".join(character_list)
             return result
-
         elif character_list[6] != " ":
             character_list[0] = "o"
             result = "".join(character_list)
             return result
-
         else:
             ptp = random.choice(choices)
             character_list[ptp] = "o"
             result = "".join(character_list)
+            
             return result
     if pm == 7:
-
         if character_list[0] != " ":
             character_list[0] = "o"
             result = "".join(character_list)
@@ -88,10 +74,10 @@ def game(character_list):
             result = "".join(character_list)
             return result
 
-    if pm >= 6:
+    if pm <= 6:
         blocking_check  = [[0,1,2],[0,3,6],[3,4,5],[1,4,7],[6,7,8],[2,5,8],[0,4,8],[2,4,6]]
 
-        block_move = block(character_list,blocking_check)
+        block_move = block(character_list,*blocking_check)
 
         if block_move:
             character_list[block_move] = "o"
@@ -117,23 +103,18 @@ def game(character_list):
                 character_list[6] = "o"
                 result = "".join(character_list)
                 return result
-
-        
-         
+   
 def block(character_list, *check_list):
     c = character_list
 
     for item in check_list:
-        if ((c[item[0]] and c[item[1]]) == "x" and c[item[2]] == " "):
+        if ((c[item[0]] == c[item[1]]) and c[item[2]] == " "):
             return item[2]
-        elif ((c[item[1]] and c[item[2]]) == "x" and c[item[0]] == " ") :
+        elif ((c[item[1]] == c[item[2]]) and c[item[0]] == " ") :
             return item[0]
-        elif ((c[item[1]] and c[item[2]])== "x"  and c[item[1]] == " "):
+        elif ((c[item[1]] == c[item[2]])  and c[item[1]] == " "):
             return item[1]
-        else:
-            return  None
-            
-         
+              
 def winning_criteria(board):
     
     #Split the board to  individual values in a list called spit_board
@@ -182,4 +163,3 @@ def winning_criteria(board):
         }),200
     else:
         return convert_to_list
-    
