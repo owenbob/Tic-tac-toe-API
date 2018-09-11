@@ -22,15 +22,14 @@ def game(character_list):
     choices = [0, 2, 6, 8]
 
     if pm == 9:
-        
+ 
         ptp = random.choice(choices)
         character_list[ptp] = "o"
 
         result = "".join(character_list)
         return result
 
-    if pm == 8:
-        
+    if pm == 8:        
         if character_list[0] != " ":
             character_list[8] = "o"
             result = "".join(character_list)
@@ -58,7 +57,6 @@ def game(character_list):
             character_list[0] = "o"
             result = "".join(character_list)
             return result
-
         elif character_list[2] == " ":
             character_list[2] = "o"
             result = "".join(character_list)
@@ -78,6 +76,7 @@ def game(character_list):
         blocking_check  = [[0,1,2],[0,3,6],[3,4,5],[1,4,7],[6,7,8],[2,5,8],[0,4,8],[2,4,6]]
 
         block_move = block(character_list,*blocking_check)
+
         if block_move:
             character_list[block_move] = "o"
             result = "".join(character_list)
