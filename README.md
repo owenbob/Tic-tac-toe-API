@@ -8,7 +8,7 @@ This API is hosted on Heroku URL
 https://tictac-toe-api.herokuapp.com/
 ```
 ```
-Try  https://tictac-toe-api.herokuapp.com/board=+xxo++o++ 
+Try  https://tictac-toe-api.herokuapp.com/?board=+xxo++o++ 
 ```
 
 ## Specifications
