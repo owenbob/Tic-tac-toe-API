@@ -26,7 +26,7 @@ First clone this repository
 ```
 $ git clone 
 ```
-Create virtual environment and install it
+Create virtual environment and activate  it
 ```
 $ virtualenv env
 $ source/env/bin/activate
